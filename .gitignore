@@ -2,3 +2,5 @@
 /compile_commands.json
 /.ccls-cache
 /.clangd
+/.cmake-format.yaml
+/.clang-format
