@@ -19,11 +19,7 @@ option(
     "Automatically create and copy compile commands file to root folder for linters."
     OFF)
 
-if(AUTO_CREATE_COMPILE_COMMANDS)
-    set(CMAKE_EXPORT_COMPILE_COMMANDS
-        ON
-        CACHE BOOL "" FORCE)
-
+if(CMAKE_EXPORT_COMPILE_COMMANDS)
     add_custom_command(
         TARGET starter
         POST_BUILD
