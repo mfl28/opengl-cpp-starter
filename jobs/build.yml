@@ -1,0 +1,23 @@
+# Job template
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/process/templates
+
+parameters:
+  name: ''
+  pool: ''
+  platform: ''
+  setupSteps: []
+
+jobs:
+- job: ${{ parameters.name }}
+  pool: ${{ parameters.pool }}
+  steps:
+  - ${{ each step in parameters.setupSteps }}:
+    - ${{ step }}
+  - task: CMake@1
+    displayName: 'CMake generate'
+    inputs:
+      cmakeArgs: '..'
+  - task: CMake@1
+    displayName: 'CMake build'
+    inputs:
+      cmakeArgs: '--build .'

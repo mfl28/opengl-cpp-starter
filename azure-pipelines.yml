@@ -1,0 +1,37 @@
+# Azure Pipeline
+# https://docs.microsoft.com/en-us/azure/devops/pipelines
+
+trigger:
+  branches:
+    include:
+    - master
+  tags:
+    include:
+    - '*'
+
+stages:
+- stage: Build
+  jobs:
+  - template: jobs/build.yml
+    parameters:
+      name: Linux
+      platform: linux
+      pool:
+        vmImage: 'ubuntu-latest'
+      setupSteps:
+      - script: |
+          sudo apt-get update
+          sudo apt-get install -y libxrandr-dev libxinerama-dev libx11-dev libxcursor-dev libxi-dev libxext-dev libegl1-mesa-dev mesa-utils
+        displayName: 'Install dependencies'
+  - template: jobs/build.yml
+    parameters:
+      name: Windows
+      platform: win
+      pool:
+        vmImage: 'windows-latest'
+  - template: jobs/build.yml
+    parameters:
+      name: MacOS
+      platform: mac
+      pool:
+        vmImage: 'macOS-latest'

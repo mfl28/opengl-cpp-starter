@@ -14,14 +14,21 @@ target_include_directories(starter PUBLIC include)
 
 target_link_libraries(starter PUBLIC glfw glad glm)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS
-    ON
-    CACHE BOOL "" FORCE)
+option(
+    AUTO_CREATE_COMPILE_COMMANDS
+    "Automatically create and copy compile commands file to root folder for linters."
+    OFF)
 
-add_custom_command(
-    TARGET starter
-    PRE_BUILD
-    COMMAND
-        ${CMAKE_COMMAND} -E copy
-        ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json
-        ${CMAKE_CURRENT_SOURCE_DIR})
+if(AUTO_CREATE_COMPILE_COMMANDS)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS
+        ON
+        CACHE BOOL "" FORCE)
+
+    add_custom_command(
+        TARGET starter
+        POST_BUILD
+        COMMAND
+            ${CMAKE_COMMAND} -E copy
+            ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json
+            ${CMAKE_CURRENT_SOURCE_DIR})
+endif()
