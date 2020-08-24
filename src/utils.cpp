@@ -1,6 +1,7 @@
 #include "utils.h"
 
 #include <glad/glad.h>
+// Must come after glad.h.
 #include <GLFW/glfw3.h>
 
 namespace utils {

@@ -6,12 +6,13 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 include(fetch_glfw)
 include(fetch_glad)
+include(fetch_glm)
 
 add_executable(starter)
 target_sources(starter PRIVATE src/main.cpp src/utils.cpp)
 target_include_directories(starter PUBLIC include)
 
-target_link_libraries(starter PUBLIC glfw glad)
+target_link_libraries(starter PUBLIC glfw glad glm)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS
     ON
