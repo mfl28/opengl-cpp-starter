@@ -16,7 +16,7 @@ jobs:
   - task: CMake@1
     displayName: 'CMake generate'
     inputs:
-      cmakeArgs: '..'
+      cmakeArgs: '.. -D USE_ASSIMP=YES'
   - task: CMake@1
     displayName: 'CMake build'
     inputs:

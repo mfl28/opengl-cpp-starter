@@ -16,6 +16,13 @@ target_include_directories(${EXECUTABLE_NAME} PUBLIC include)
 
 target_link_libraries(${EXECUTABLE_NAME} PUBLIC glfw glad glm)
 
+option(USE_ASSIMP "Determines whether to fetch and build assimp as part of the project." OFF)
+
+if(USE_ASSIMP)
+    include(fetch_assimp)
+    target_link_libraries(${EXECUTABLE_NAME} PUBLIC assimp)
+endif()
+
 set_target_properties(${EXECUTABLE_NAME} PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES)
