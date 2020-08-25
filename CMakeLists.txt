@@ -4,15 +4,21 @@ project(opengl-cpp-starter LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+set(EXECUTABLE_NAME starter)
+
 include(fetch_glfw)
 include(fetch_glad)
 include(fetch_glm)
 
-add_executable(starter)
-target_sources(starter PRIVATE src/main.cpp src/utils.cpp)
-target_include_directories(starter PUBLIC include)
+add_executable(${EXECUTABLE_NAME})
+target_sources(${EXECUTABLE_NAME} PRIVATE src/main.cpp src/utils.cpp)
+target_include_directories(${EXECUTABLE_NAME} PUBLIC include)
 
-target_link_libraries(starter PUBLIC glfw glad glm)
+target_link_libraries(${EXECUTABLE_NAME} PUBLIC glfw glad glm)
+
+set_target_properties(${EXECUTABLE_NAME} PROPERTIES
+    CXX_STANDARD 17
+    CXX_STANDARD_REQUIRED YES)
 
 option(
     AUTO_CREATE_COMPILE_COMMANDS
@@ -20,8 +26,10 @@ option(
     OFF)
 
 if(CMAKE_EXPORT_COMPILE_COMMANDS)
+    # Copy compile_commands.json to root folder (useful when using code completion tools
+    # such as clangd).
     add_custom_command(
-        TARGET starter
+        TARGET ${EXECUTABLE_NAME}
         POST_BUILD
         COMMAND
             ${CMAKE_COMMAND} -E copy
