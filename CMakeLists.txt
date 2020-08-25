@@ -20,11 +20,6 @@ set_target_properties(${EXECUTABLE_NAME} PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED YES)
 
-option(
-    AUTO_CREATE_COMPILE_COMMANDS
-    "Automatically create and copy compile commands file to root folder for linters."
-    OFF)
-
 if(CMAKE_EXPORT_COMPILE_COMMANDS)
     # Copy compile_commands.json to root folder (useful when using code completion tools
     # such as clangd).
