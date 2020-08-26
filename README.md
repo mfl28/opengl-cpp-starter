@@ -7,6 +7,10 @@ using modern CMake. The included CMake scripts automatically fetch and link [glf
 
 ## Getting started
 
+**Requirements**
+
+-   [CMake](https://cmake.org/) (minimum version 3.18.0)
+
 ### Clone
 
 ```bash
