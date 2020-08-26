@@ -23,6 +23,12 @@ stages:
           sudo apt-get update
           sudo apt-get install -y libxrandr-dev libxinerama-dev libx11-dev libxcursor-dev libxi-dev libxext-dev libegl1-mesa-dev mesa-utils
         displayName: 'Install dependencies'
+      - script: |
+          wget https://cmake.org/files/v3.18/cmake-3.18.0-Linux-x86_64.tar.gz
+          tar xf cmake-3.18.0-Linux-x86_64.tar.gz
+          mv cmake-3.18.0-Linux-x86_64 cmake-install
+          echo "##vso[task.prependpath]$(pwd)/cmake-install/bin"
+        displayName: 'Upgrade CMake'
   - template: jobs/build.yml
     parameters:
       name: Windows

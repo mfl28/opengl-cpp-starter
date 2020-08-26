@@ -14,6 +14,10 @@ jobs:
   - ${{ each step in parameters.setupSteps }}:
     - ${{ step }}
   - task: CMake@1
+    displayName: 'CMake version'
+    inputs:
+      cmakeArgs: '--version'
+  - task: CMake@1
     displayName: 'CMake generate'
     inputs:
       cmakeArgs: '.. -D USE_ASSIMP=YES'

@@ -9,12 +9,13 @@ set(EXECUTABLE_NAME starter)
 include(fetch_glfw)
 include(fetch_glad)
 include(fetch_glm)
+include(fetch_stb_image)
 
 add_executable(${EXECUTABLE_NAME})
 target_sources(${EXECUTABLE_NAME} PRIVATE src/main.cpp src/utils.cpp)
 target_include_directories(${EXECUTABLE_NAME} PUBLIC include)
 
-target_link_libraries(${EXECUTABLE_NAME} PUBLIC glfw glad glm)
+target_link_libraries(${EXECUTABLE_NAME} PUBLIC glfw glad glm stb_image)
 
 option(USE_ASSIMP "Determines whether to fetch and build assimp as part of the project." OFF)
 
